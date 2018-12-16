@@ -18,17 +18,17 @@ done
 
 for s in $suites
 do
-  echo “    CU_pSuite ${s}_suite;”
+  echo "    CU_pSuite ${s}_suite;"
 done
 
-echo “    CU_initialize_registry();”
+echo "    CU_initialize_registry();"
 
 for s in $suites
 do
-  echo “${s}_suite = CU_add_suite(\"${s}\",NULL,NULL);”
+  echo "${s}_suite = CU_add_suite(\"${s}\",NULL,NULL);"
   for f in `ctags -x —c-kinds=f ${s}.c`
   do
-    echo “    CU_add_test(${s}_suite,\"${f}\",${f});”
+    echo "    CU_add_test(${s}_suite,\"${f}\",${f});"
   done
 done
 
