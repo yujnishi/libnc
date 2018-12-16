@@ -1,4 +1,4 @@
 all:
-	ctags -x —kinds=f assert.c
-	ctags —help
+	ctags -x --c-kinds=f assert.c
+	ctags -h
 	bash main.sh
