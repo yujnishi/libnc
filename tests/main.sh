@@ -7,7 +7,6 @@ cat << EOF
 #include <CUnit/Basic.h>
 #include <CUnit/Automated.h>
 
-int main() {
 EOF
 
 suites=
@@ -15,6 +14,14 @@ for t in *.c
 do
   suites=$suites\ ${t%.c}
 done
+
+for s in $suites
+do
+  echo "#include \"${s}.c\""
+done
+
+echo
+echo "int main() {"
 
 for s in $suites
 do
