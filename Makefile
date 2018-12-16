@@ -1,7 +1,7 @@
 all:
-	gmake -C src
-	gmake -C tests
+	make -C src
+	make -C tests
 
 clean:
-	gmake -C src clean
-	gmake -C tests clean
+	make -C src clean
+	make -C tests clean
