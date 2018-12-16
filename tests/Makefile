@@ -1,2 +1,3 @@
 all:
-	bash main.sh
+	bash main.sh | gcc -x c -
+	./a.out
