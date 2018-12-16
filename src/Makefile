@@ -1,5 +1,5 @@
 SRCS=${wildcard *.c}
 
 all:
-	gcc -shared -o libnc.so $(SRCS)
+	gcc -I../include -shared -o libnc.so $(SRCS)
 
