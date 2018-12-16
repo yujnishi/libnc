@@ -15,3 +15,5 @@ for t in *.c
 do
   suites=$suites\ ${t##.c}
 done
+
+echo $suites
