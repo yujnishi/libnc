@@ -35,7 +35,7 @@ for s in $suites
 do
   echo "    ${s}_suite = CU_add_suite(\"${s}\",NULL,NULL);"
 
-  for f in `ctags -x --declarations -r '/^test_/' ${s}.c | cut -f1`
+  for f in `ctags -x --declarations -r '/^test_/' ${s}.c | cut -d\  -f1`
   do
     echo "    CU_add_test(${s}_suite,\"${f}\",${f});"
   done
