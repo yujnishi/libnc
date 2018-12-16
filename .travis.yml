@@ -1,7 +1,7 @@
 language: c
 
 script:
-    - gmake
+    - make
 
 sudo: true
 
