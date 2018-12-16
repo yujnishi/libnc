@@ -26,7 +26,7 @@ echo "    CU_initialize_registry();"
 for s in $suites
 do
   echo "${s}_suite = CU_add_suite(\"${s}\",NULL,NULL);"
-  for f in `ctags -x —c-kinds=f ${s}.c | egrep ^test_ | sed 's/\(.*$//'`
+  for f in `ctags -x --declarations -r '/^test_/' ${s}.c | cut -d$'\t' -f1`
   do
     echo "    CU_add_test(${s}_suite,\"${f}\",${f});"
   done
