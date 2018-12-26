@@ -15,4 +15,9 @@ tolower
 
 #define isalnum(c) (isalpha(c)||isdigit(c))
 #define isalpha(c) (isupper(c)||islower(c))
-#define iscntl(c) (
+#ifndef isoscntl
+#define isoscntl(c) (0)
+#endif
+#ifndef istermcntl
+#define istermcntl(c) (0)
+#define iscntl(c) (((c)<' '&&!isspace(c))||isoscntl(c)||istermcntl(c))
