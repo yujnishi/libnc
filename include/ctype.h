@@ -1,17 +1,6 @@
 #ifndef CTYPE_H
 #define CTYPE_H 1
 
-isdigit - 数字かどうかの判別
-isgraph - 空白（' '）を除く表示文字かどうかの判別
-islower - 小文字かどうかの判別
-isprint - 表示文字かどうかの判別
-ispunct - 区切り文字かどうかの判別
-isspace - 空白類文字かどうかの判別
-isupper - 大文字かどうかの判別
-isxdigit - 16進数字かどうかの判別
-tolower
-#define toupper(c) ((c) + (islower(c) ? 'a'-'A' : 0))
-
 #define isalnum(c) (isalpha(c)||isdigit(c))
 #define isalpha(c) (isupper(c)||islower(c))
 #ifndef isoscntl
@@ -21,4 +10,16 @@ tolower
 #define istermcntl(c) (0)
 #endif
 #define iscntl(c) (((c)<' '&&!isspace(c))||isoscntl(c)||istermcntl(c))
-#define isdigit(c) ((c)>='
+#define isdigit(c) ((c)>='0'&&(c)<='9')
+#define isxdigit(c) (isdigit(c)||(((c)>='A'&&(c)<='F')||((c)>='a'&&(c)<='f'))
+#define isgraph(c) ((c)>' ')
+#define islower(c) ((c)>='a'&&(c)<='z')
+#define isupper(c) ((c)>='A'&&(c)<='Z')
+#define isprint(c) (isgraph(c))
+#define ispunct(c) (((c)>='!'&&(c)<='$')||((c)>=':'&&(c)<='`')||((c)>='{'&&(c)<='}'))
+#define isspace(c) ((c)==' '||(c)=='\t'||(c)=='\r'||(c)=='\n')
+
+#define toupper(c) ((c) - (islower(c) ? 'a'-'A' : 0))
+#define tolower(c) ((c) + (isupper(c) ? 'a'-'A' : 0))
+
+#endif /* CTYPE_H */
