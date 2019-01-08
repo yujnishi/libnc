@@ -12,13 +12,13 @@
 #define istermcntl(c) (0)
 #endif
 #define iscntl(c) (((c)<' '&&!isspace(c))||isoscntl(c)||istermcntl(c))
-#define isdigit(c) ((c)>='0'&&(c)<='9')
-#define isxdigit(c) (isdigit(c)||(((c)>='A'&&(c)<='F')||((c)>='a'&&(c)<='f')))
+#define isdigit(c) range(c,'0','9')
+#define isxdigit(c) (isdigit(c)||range(c,'A','F')||range(c,'a','f'))
 #define isgraph(c) ((c)>' ')
-#define islower(c) ((c)>='a'&&(c)<='z')
-#define isupper(c) ((c)>='A'&&(c)<='Z')
+#define islower(c) range(c,'a','z')
+#define isupper(c) range(c,'A','Z')
 #define isprint(c) (isgraph(c))
-#define ispunct(c) (((c)>='!'&&(c)<='$')||((c)>=':'&&(c)<='`')||((c)>='{'&&(c)<='}'))
+#define ispunct(c) (((c)=='.')||((c)>='!'&&(c)<='$')||((c)>=':'&&(c)<='`')||((c)>='{'&&(c)<='}'))
 #define isspace(c) ((c)==' '||(c)=='\t'||(c)=='\r'||(c)=='\n')
 
 #define toupper(c) ((c) - (islower(c) ? 'a'-'A' : 0))
