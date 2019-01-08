@@ -71,7 +71,7 @@ void test_isspace() {
 }
 
 void test_nextc() {
-    unsigned char str[] = "aαあ禧";
+    unsigned char str[] = "aαあ𠮷";
     int i;
 
     for (i=0;str[i];i++)printf("%02x ",str[i]);
