@@ -69,3 +69,8 @@ void test_isspace() {
     CU_ASSERT(isspace('\t'));
     CU_ASSERT(!isspace('\b'));
 }
+
+void test_nextc() {
+    char str[] = "aあ";
+
+}
