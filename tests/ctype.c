@@ -72,10 +72,12 @@ void test_isspace() {
 
 void test_nextc() {
     unsigned char str[] = "aαあ𠮷";
-    int i;
     unsigned char* p;
 
-    for (i=0,p=str;p&&i<10;p=nextc(p)){printf("(%p)%s\n ",p,p);i++;}
-printf("\n");
-
+    p = str;
+    CU_ASSERT(strcmp(p=nextc(p),"αあ𠮷") == 0);
+    CU_ASSERT(strcmp(p=nextc(p),"あ𠮷") == 0);
+   CU_ASSERT(strcmp(p=nextc(p),"𠮷") == 0);
+    CU_ASSERT( *p == '\0' );
+    CU_ASSERT( nextc(p) == NULL );
 }
