@@ -78,7 +78,6 @@ void test_nextc() {
     CU_ASSERT(strcmp(p=nextc(p),"αあ𠮷") == 0);
     CU_ASSERT(strcmp(p=nextc(p),"あ𠮷") == 0);
     CU_ASSERT(strcmp(p=nextc(p),"𠮷") == 0);
-    printf("%p:%s\n",p,p);
-    CU_ASSERT( *p == '\0' );
+    CU_ASSERT( *(p=nextc(p)) == '\0' );
     CU_ASSERT( nextc(p) == NULL );
 }
