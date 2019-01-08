@@ -28,6 +28,6 @@
 #define is2byte(c) (range(c,0xc2,0xdf))
 #define is3byte(c) (range(c,0xe0,0xef))
 #define is4byte(c) (range(c,0xf0,0xf7))
-#define nextc(str) ((str)=is4byte(*(str))?(str)+4:is3byte(*(str))?(str)+3:is2byte(*(str))?(str)+2:(*(str)!='\0')?(str)+1:NULL)
+#define nextc(str) (((str)==NULL||*(str)=='\0')?NULL:is4byte(*(str))?(str)+4:is3byte(*(str))?(str)+3:is2byte(*(str))?(str)+2:(str)+1)
 
 #endif /* CTYPE_H */
