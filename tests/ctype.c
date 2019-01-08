@@ -73,8 +73,9 @@ void test_isspace() {
 void test_nextc() {
     unsigned char str[] = "aαあ𠮷";
     int i;
+    unsigned char* p;
 
-    for (i=0;str[i];i++)printf("%02x ",str[i]);
+    for (p=str;str;nextc(p))printf("%s\n ",p);
 printf("\n");
 
 }
