@@ -1,6 +1,8 @@
 #ifndef CTYPE_H
 #define CTYPE_H 1
 
+#include <math.h>
+
 #define isalnum(c) (isalpha(c)||isdigit(c))
 #define isalpha(c) (isupper(c)||islower(c))
 #ifndef isoscntl
@@ -21,5 +23,11 @@
 
 #define toupper(c) ((c) - (islower(c) ? 'a'-'A' : 0))
 #define tolower(c) ((c) + (isupper(c) ? 'a'-'A' : 0))
+
+#define is1byte(c) (range(c,1,0x7f))
+#define is2byte(c) (range(c,0xc2,0xdf))
+#define is3byte(c) (range(c,0xe0,0xef))
+#define is4byte(c) (range(c,0xf0,0xf7))
+#define nextc(str) ((str)+=is4byte(*(str))?4:is3byte(*(str))?3:is2byte(*(str))?2:(*(str)!='\0')?1:-(str))
 
 #endif /* CTYPE_H */
