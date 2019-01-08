@@ -75,7 +75,7 @@ void test_nextc() {
     int i;
     unsigned char* p;
 
-    for (i=0,p=str;str||i<10;nextc(p)){printf("(%p)%s\n ",p,p);i++;}
+    for (i=0,p=str;p&&i<10;p=nextc(p)){printf("(%p)%s\n ",p,p);i++;}
 printf("\n");
 
 }
