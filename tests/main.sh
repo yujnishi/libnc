@@ -1,7 +1,9 @@
 #!/bin/bash
 
 #set -vx
-ctags --version >&2
+
+CTAGS_FLAGS="-x --declarations"
+ctags --version 2> /dev/null | grep Exuberant > /dev/null && CTAGS_FLAGS="-x --c-types=f"
 
 cat << EOF
 #include <CUnit/CUnit.h>
@@ -36,8 +38,7 @@ for s in $suites
 do
   echo "    ${s}_suite = CU_add_suite(\"${s}\",NULL,NULL);"
 
-  #for f in `ctags -x --declarations -r '/^test_/' ${s}.c | cut -d\  -f1`
-  for f in `ctags -x --c-types=f ${s}.c | cut -d\  -f1 | egrep '^test_'`
+  for f in `ctags $CTAGS_FLAGS ${s}.c | cut -d\  -f1 | egrep '^test_'`
   do
     echo "    CU_add_test(${s}_suite,\"${f}\",${f});"
   done
