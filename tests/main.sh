@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #set -vx
+ctags --version >&2
 
 cat << EOF
 #include <CUnit/CUnit.h>
@@ -35,7 +36,8 @@ for s in $suites
 do
   echo "    ${s}_suite = CU_add_suite(\"${s}\",NULL,NULL);"
 
-  for f in `ctags -x --declarations -r '/^test_/' ${s}.c | cut -d\  -f1`
+  #for f in `ctags -x --declarations -r '/^test_/' ${s}.c | cut -d\  -f1`
+  for f in `ctags -x --c-types=f ${s}.c | cut -d\  -f1 | egrep '^test_'`
   do
     echo "    CU_add_test(${s}_suite,\"${f}\",${f});"
   done
