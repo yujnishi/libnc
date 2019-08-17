@@ -3,6 +3,7 @@
 #include <string.h>
 #include <sys/stat.h>
 
+/*
 void test_setlocale() {
     struct __locale l;
 
@@ -30,3 +31,4 @@ void test_aliaslocale() {
     CU_ASSERT(aliaslocale("ccc","bbb") == 0);
     CU_ASSERT(stat("ccc",&st) == 0);
 }
+*/

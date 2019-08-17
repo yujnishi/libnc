@@ -16,7 +16,7 @@ char* setlocale(int cat,const char* lc) {
 
     if ( (strlen(lc)+1) > sizeof(lang) ) return NULL;
 
-    snprintf(fname,sizeof(fname),"%s/%s",LC_PATH,lc);
+    snprintf(fname,sizeof(fname),"%{LC_PATH}$s/%s",lc);
     fi = fopen(fname,"rb");
     if ( fi == NULL ) return NULL;
     if ( fread(&l,sizeof(l),1,fi) != 1 ) {
