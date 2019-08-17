@@ -34,7 +34,7 @@ int printf(const char* fmt,...) {
     int base;
     char buf[64];
     int size = 0;
-
+fputs("EXEC PRINTF\n",stderr);
     va_start(ap_src,fmt);
     va_copy(ap,ap_src);
         
