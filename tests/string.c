@@ -97,6 +97,8 @@ void test_strldel() {
 void test_strdel() {
     char buf1[] = " ..  abc . def ..  ";
     char buf2[] = "abc . def";
+    char buf3[] = "123_abcdef";
+    char buf4[] = "123_abcdef";
 
     CU_ASSERT(strdel(buf1," .") == buf1);
     CU_ASSERT(!strcmp(buf1,"abc . def"));

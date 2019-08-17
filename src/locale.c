@@ -1,13 +1,14 @@
 #include <locale.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <limits.h>
 #include <unistd.h>
 #include <sys/stat.h>
 
 struct __locale __current_locale;
-char lang[64];
-char lang_bk[64];
+char lang[64] = "C";
+char lang_bk[64] = "";
 
 char* setlocale(int cat,const char* lc) {
     struct __locale l;
@@ -16,9 +17,11 @@ char* setlocale(int cat,const char* lc) {
 
     if ( (strlen(lc)+1) > sizeof(lang) ) return NULL;
 
-    snprintf(fname,sizeof(fname),"%{LC_PATH}$s/%s",lc);
+    snprintf(fname,sizeof(fname),"%s/%s",strdef(getenv("LC_PATH"),LC_PATH),lc);
     fi = fopen(fname,"rb");
+printf("SETLOCALE fopen\n");
     if ( fi == NULL ) return NULL;
+printf("SETLOCALE fread\n");
     if ( fread(&l,sizeof(l),1,fi) != 1 ) {
         fclose(fi);
         return NULL;
@@ -55,7 +58,7 @@ int savelocale(const char* lc,const struct __locale* l,int overwrite) {
     char fname[PATH_MAX];
     FILE* fi;
 
-    snprintf(fname,sizeof(fname),"%s/%s",LC_PATH,lc);
+    snprintf(fname,sizeof(fname),"%s/%s",strdef(getenv("LC_PATH"),LC_PATH),lc);
     if ( !overwrite && stat(fname,&st) == 0 ) return -1;
 
     fi = fopen(fname,"w");
@@ -73,7 +76,7 @@ int savelocale(const char* lc,const struct __locale* l,int overwrite) {
 int aliaslocale(const char* lc,const char* src) {
     char fname[PATH_MAX];
 
-    snprintf(fname,sizeof(fname),"%s/%s",LC_PATH,lc);
+    snprintf(fname,sizeof(fname),"%s/%s",strdef(getenv("LC_PATH"),LC_PATH),lc);
     return symlink(src,fname);
 }
 

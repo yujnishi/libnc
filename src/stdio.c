@@ -4,15 +4,10 @@
 #include <string.h>
 #include <ctype.h>
 
-int strpul(char*,const char*,const char*);
-char* strdef(char*,char*);
-char* strdel(char*,const char*);
-int strcvl(char*,int,int);
 int strcvf(char* dst,float src,int base) {
     dst[0] = '\0';
     return 0;
 }
-
 
 int printf(const char* fmt,...) {
     va_list ap,ap_bak,ap_src;
@@ -34,7 +29,7 @@ int printf(const char* fmt,...) {
     int base;
     char buf[64];
     int size = 0;
-fputs("EXEC PRINTF\n",stderr);
+
     va_start(ap_src,fmt);
     va_copy(ap,ap_src);
         
