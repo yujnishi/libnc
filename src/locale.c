@@ -7,7 +7,7 @@
 #include <sys/stat.h>
 
 struct __locale __current_locale;
-char lang[64] = "C";
+char lang[64] = "";
 char lang_bk[64] = "";
 
 char* setlocale(int cat,const char* lc) {
@@ -19,9 +19,7 @@ char* setlocale(int cat,const char* lc) {
 
     snprintf(fname,sizeof(fname),"%s/%s",strdef(getenv("LC_PATH"),LC_PATH),lc);
     fi = fopen(fname,"rb");
-printf("SETLOCALE fopen\n");
     if ( fi == NULL ) return NULL;
-printf("SETLOCALE fread\n");
     if ( fread(&l,sizeof(l),1,fi) != 1 ) {
         fclose(fi);
         return NULL;

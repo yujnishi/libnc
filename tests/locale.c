@@ -8,8 +8,6 @@ void test_setlocale() {
 
     savelocale("hoge",&l,0);
     aliaslocale("fuga","hoge");
-printf("==%p\n",setlocale(LC_ALL,"hoge"));
-exit(0);
     CU_ASSERT(strcmp(setlocale(LC_ALL,"hoge"),"") == 0);
     CU_ASSERT(strcmp(setlocale(LC_ALL,"fuga"),"hoge") == 0);
 }
