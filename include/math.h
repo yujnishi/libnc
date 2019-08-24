@@ -1,9 +1,10 @@
 #ifndef MATH_H
 #define MATH_H 1
 
+#define M_PI (3.14159265358979323846)
+
 #define max(a,b)      (((a)>(b)) ? (a) : (b))
 #define min(a,b)      (((a)<(b)) ? (a) : (b))
-#define abs(a)        (((a)>=0) ? (a) : -(a))
 #define range(o,l,h)  ((o)>=(l)&&(o)<=(h))
 
 double sin(double);
@@ -31,9 +32,6 @@ double fabs(double);
 double ceil(double);
 double floor(double);
 
-    fmod — 浮動小数点どうしの商と剰余
-    frexp — 「正規化された仮数部」と「2の累乗」への分解
-    ldexp — 浮動小数点数と2の累乗との乗算
-    modf — 整数部と小数部の分解
+double fmod(double,double);
 
 #endif /* MATH_H */

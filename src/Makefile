@@ -8,7 +8,7 @@ target=libnc.so
 endif
 
 all:
-	gcc -I../include -shared -fPIC -o $(target) $(SRCS)
+	gcc -g -I../include -shared -fPIC -o $(target) $(SRCS)
 
 clean:
 	rm -f $(target)
