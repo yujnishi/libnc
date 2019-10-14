@@ -1,6 +1,35 @@
 #include <stdio.h>
 #include <math.h>
 
+unsigned long long int expdbl(double d,int* sig,int* exp) {
+    unsigned long long int val;
+
+    *sig = d>=0.0 ? 1 : -1;
+    *exp = ((*(unsigned long long int*)&d)>>52)&0x07ff;
+    val = *(unsigned long long int*)&d;
+    val &= 0x3ffffffffffff;
+    return val;
+}
+
+double impdbl(int sig,int exp,unsigned long long int val) {
+    unsigned long long int d;
+
+    sig = sig>=0 ? 0 : 1;
+
+    d = 0;
+    d |= ((unsigned long long int)(sig&1))<<63;
+    d |= ((unsigned long long int)(exp&0x07ff))<<52;
+    d |= ((unsigned long long int)(val&0x3ffffffffffff));
+    return *((double*)&d);
+}
+
+/*
+double roundoff(double x,int d) {
+    int d;
+    
+}
+*/
+
 double _sin(double x) {
     int i,n,f;
     double result;

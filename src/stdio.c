@@ -9,7 +9,7 @@ int strcvf(char* dst,float src,int base) {
     return 0;
 }
 
-int printf(const char* fmt,...) {
+int _printf(const char* fmt,...) {
     va_list ap,ap_bak,ap_src;
     const char* p;
     int prefix_flag  = 0;

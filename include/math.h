@@ -7,6 +7,9 @@
 #define min(a,b)      (((a)<(b)) ? (a) : (b))
 #define range(o,l,h)  ((o)>=(l)&&(o)<=(h))
 
+unsigned long long int expdbl(double,int*,int*);
+double impdbl(int,int,unsigned long long int);
+
 double sin(double);
 double cos(double);
 double tan(double);
