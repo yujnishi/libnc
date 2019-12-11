@@ -23,22 +23,24 @@ double impdbl(int sig,int exp,unsigned long long int val) {
     return *((double*)&d);
 }
 
-/*
-double roundoff(double x,int d) {
-    int d;
-    
+double fabs(double x) {
+    return (x>=0) ? x : -x;
 }
-*/
 
 double _sin(double x) {
     int i,n,f;
     double result;
     double d,t,q;
 
+    x = fabs(x);
+    if ( x >= 2.0*M_PI ) return _sin(x-(2.0*M_PI));
+    if ( x >= M_PI )   return -_sin(x-M_PI);
+    if ( x >= M_PI/2.0 )   return 1-_sin(x-(M_PI/2.0));
+
     result = 0;
-    t = 1;
+    t = 1.0;
     f = 1;
-    for ( n = 1; t != 0; n += 2 ) {
+    for ( n = 1; t != 0.0; n += 2 ) {
         // 分子
         q = 1;
         for ( i = 0; i < n; i++ ) q *= x;
@@ -48,6 +50,34 @@ double _sin(double x) {
         for ( i = 2; i <= n; i++ ) d *= i;
 
         t = q/d;
+        result += f*t;
+
+        f *= -1;
+    } 
+//fprintf(stderr,"max is %d:%lf:%lf\n",n,result,t);
+
+    return result;
+}
+double __sin(double x) {
+    int i,n,f;
+    double result;
+    double d,t,q;
+
+    result = 0;
+    t = 1.0;
+    f = 1;
+    for ( n = 1; t != 0.0; n += 2 ) {
+        // 分子
+        q = 1;
+        for ( i = 0; i < n; i++ ) q *= x;
+
+        // 分母
+        d = 1;
+        //for ( i = 2; i <= n; i++ ) d *= i;
+        t = q;
+        for ( i = 2; i <= n; i++ ) t /= (double)i;;
+
+        //t = q/d;
         result += f*t;
 
         f *= -1;

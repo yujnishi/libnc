@@ -43,11 +43,12 @@ void test_impdbl() {
 }
 
 void test_sin() {
-    CU_ASSERT( sin(0.0)    == 0.0 );
-    CU_ASSERT( sin(M_PI/6.0) == 0.5 );
-    CU_ASSERT( sin(M_PI/4.0) == 0.707106781 );
-    CU_ASSERT( sin(M_PI/3.0) == 0.866025404 );
-    CU_ASSERT( sin(M_PI/2.0) == 1.0 );
-    CU_ASSERT( sin(M_PI)     == 0.0 );
-//fprintf(stderr,"%lf\n",sin(M_PI/6.0));
+    double _sin(double);
+    CU_ASSERT( _sin(0.0)    == 0.0 );
+    CU_ASSERT( _sin(M_PI/6.0) == 0.499999999999999944488848768742172978818416595458984375 );
+    CU_ASSERT( _sin(M_PI/4.0) == 0.707106781186547461715008466853760182857513427734375 );
+    CU_ASSERT( _sin(M_PI/3.0) == 0.86602540378443848556599959920276887714862823486328125 );
+    CU_ASSERT( _sin(M_PI/2.0) == 1.0 );
+    CU_ASSERT( _sin(M_PI)     == 0.0000000000000001224646799147353207173764029458396604625692124677580063796256126806838437914848327637 );
+fprintf(stderr,"###%3.100lf\n",_sin(M_PI));
 }
